@@ -239,3 +239,4 @@ Our reported InLegalBERT ROUGE-L F1 score was 0.5184. Additionally, 13 out of 15
 For the chatbot, the paper presents qualitative relevance assessments for different types of legal questions.
 
 These experiments showed promising results for the research prototype, although the evaluation was not comprehensive enough to establish suitability for real-world legal decision-making."
+
