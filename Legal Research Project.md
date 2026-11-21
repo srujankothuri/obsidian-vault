@@ -32,8 +32,13 @@ We integrated the modules through a Streamlit web interface, where users could u
 
 A key architectural decision was not to use one model for everything. Each module had different requirements: prediction needed classification, summarization needed identification of important content, and the chatbot needed retrieval and natural-language generation."
 
-![[Pasted image 20261118131447.png]]
+```mermaid
+flowchart TD
+	UI["<b>Streamlit User Interface/b><br/>Case Uploads, Predictions, Summaries, legal queries"]
+	UI --> P["<b>Prediction + Explanation</b><br/>XLNet + BiGRU + Occlusion]
+	UI --> S["<b>Summarization</b><br/>Inle]
 
+```
 ## **Part 3 — Judgment prediction using XLNet + BiGRU**
 
 2:00–4:15
