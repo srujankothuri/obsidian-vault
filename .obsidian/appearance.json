@@ -2,5 +2,8 @@
   "showRibbon": true,
   "theme": "obsidian",
   "accentColor": "#b85cf5",
-  "cssTheme": "AnuPpuccin"
+  "cssTheme": "AnuPpuccin",
+  "enabledCssSnippets": [
+    "center-mermaid"
+  ]
 }

@@ -80,7 +80,7 @@ The resulting model achieved 73.74% accuracy on our reported evaluation, outperf
 
 ### **How the prediction pipeline works**
 
-![[Pasted image 20261118131620.png]]
+
 
 ```mermaid
 flowchart TD
@@ -96,6 +96,7 @@ flowchart TD
     classDef output fill:#2a2a3a,stroke:#a78bfa,stroke-width:2px
     class F output
 ```
+
 ## **Part 4 — Explainability using occlusion**
 
 4:15–5:15
@@ -157,9 +158,18 @@ The reported ROUGE-L F1 score was 0.5184. We also evaluated 15 case files agains
 This helped us assess whether the summarizer preserved important content, although a higher ROUGE score doesn't necessarily guarantee that every legally important detail has been retained."
 
 **Summarization pipeline**
+```mermaid
+flowchart TD
+    A(["Legal judgment document"])
+    B["Sentence segmentation + InLegalBERT embeddings"]
+    C["Pairwise cosine similarity matrix"]
+    D["Rank and select representative sentences"]
+    E(["Extractive summary"])
+
+    A --> B --> C --> D --> E
+```
 
 
-![[Pasted image 20261118131715.png]]
 
 ## **Part 6 — Legal chatbot using RAG, FAISS, and Mistral-7B**
 
@@ -195,7 +205,22 @@ The key benefit of RAG is that it provides the model with relevant source inform
 
 However, retrieval doesn't guarantee correctness. The system can retrieve irrelevant passages or generate unsupported interpretations, so legal responses still require verification against authoritative sources."
 
-![[Pasted image 20261118131820.png]]
+
+```mermaid
+flowchart TD
+    subgraph prep["Document preparation"]
+        direction TB
+        D1["IPC, BNS, Constitution"] --> D2["Chunking + embeddings"] --> D3[("FAISS Vector Index")]
+    end
+
+    subgraph qa["Question answering"]
+        direction TB
+        Q1["User's legal question"] --> Q2["Embed question + retrieve top 5"] --> Q3["Mistral-7B + retrieved context"]
+    end
+
+    D3 -.->|similarity search| Q2
+    Q3 -->|Generate grounded response| ANS(["<b>Legal chatbot answer</b>"])
+```
 
 ## **Part 7 — Results and evaluation**
 
