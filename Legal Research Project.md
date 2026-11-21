@@ -34,9 +34,10 @@ A key architectural decision was not to use one model for everything. Each modul
 
 ```mermaid
 flowchart TD
-	UI["<b>Streamlit User Interface/b><br/>Case Uploads, Predictions, Summaries, legal queries"]
-	UI --> P["<b>Prediction + Explanation</b><br/>XLNet + BiGRU + Occlusion]
-	UI --> S["<b>Summarization</b><br/>Inle]
+	UI["<b>Streamlit User Interface</b><br/>Case Uploads, Predictions, Summaries, legal queries"]
+	UI --> P["<b>Prediction + Explanation</b><br/>XLNet + BiGRU + Occlusion"]
+	UI --> S["<b>Summarization</b><br/>InlegalBERT + sentence ranking"]
+	UI --> L["<b>Legal Chatbot</b><br/>FAISS + Mistral 7B"]
 
 ```
 ## **Part 3 — Judgment prediction using XLNet + BiGRU**
@@ -81,6 +82,20 @@ The resulting model achieved 73.74% accuracy on our reported evaluation, outperf
 
 ![[Pasted image 20261118131620.png]]
 
+```mermaid
+flowchart TD
+    A["<b>1. Case document</b><br/>Long legal judgment from ILDC"]
+    B["<b>2. Tokenization and chunking</b><br/>512-token chunks, 100-token overlap"]
+    C["<b>3. XLNet</b><br/>Contextual embeddings for each chunk"]
+    D["<b>4. BiGRU + Attention</b><br/>Model sequential relationships and influential content"]
+    E["<b>5. Dense + Sigmoid</b><br/>Probability of petition acceptance"]
+    F(["<b>6. Prediction</b><br/>Accepted or Rejected"])
+
+    A --> B --> C --> D --> E --> F
+
+    classDef output fill:#2a2a3a,stroke:#a78bfa,stroke-width:2px
+    class F output
+```
 ## **Part 4 — Explainability using occlusion**
 
 4:15–5:15
