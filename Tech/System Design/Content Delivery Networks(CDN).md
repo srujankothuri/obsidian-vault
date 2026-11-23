@@ -31,3 +31,7 @@ The main way that CDNs cut down on expenditure for website operators is by reduc
 Web hosting providers typically charge websites for the data that gets transferred to and from the web host. The more data that gets transferred, the greater the cost. People often refer to these expenses as "bandwidth costs," even though "bandwidth" really refers to network capacity.
 
 But when a CDN serves most of a website's content on the origin server's behalf, far less data needs to be transferred. Fewer user requests go to the origin server, because the CDN handles most of them. And less content goes out from the origin server for the same reason, lowering bandwidth costs.
+
+#### Resilience against attack
+
+CDNs are especially well-suited to defending websites from [[Denial Of Service(Dos)]](https://www.cloudflare.com/learning/ddos/glossary/denial-of-service/)and [distributed denial-of-service (DDoS)](https://www.cloudflare.com/learning/ddos/what-is-a-ddos-attack/) attacks. In these attacks, an attacker directs vast quantities of junk network traffic at a website to try to overwhelm and crash the website. With their many servers, CDNs are better able to absorb large amounts of traffic, even unnatural traffic spikes from a DDoS attack, than a single origin server. By doing so, they keep websites online even when under attack.
