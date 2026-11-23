@@ -1,8 +1,8 @@
 {
   "showRibbon": true,
-  "theme": "obsidian",
-  "accentColor": "#b85cf5",
-  "cssTheme": "AnuPpuccin",
+  "theme": "moonstone",
+  "accentColor": "#5ce3f5",
+  "cssTheme": "Solarized",
   "enabledCssSnippets": [
     "center-mermaid"
   ]

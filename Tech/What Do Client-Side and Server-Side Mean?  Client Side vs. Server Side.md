@@ -70,6 +70,6 @@ In serverless computing, all server-side or backend processes still run on serve
 
 ## Do Cloudflare Workers run server-side or client-side?
 
-Cloudflare Workers are [serverless JavaScript](https://www.cloudflare.com/learning/serverless/serverless-javascript/) functions that run on demand, and they run on the edge network Cloudflare uses for CDN caching, in between the client and the origin server. This enables developers to build serverless backends that, while technically server-side, are located as close as possible to the client device, which reduces latency and causes applications to respond more quickly to user interactions.
+Cloudflare Workers are [serverless JavaScript](https://www.cloudflare.com/learning/serverless/serverless-javascript/) functions that run on demand, and they run on the edge network Cloudflare uses for [[CDN]] caching, in between the client and the origin server. This enables developers to build serverless backends that, while technically server-side, are located as close as possible to the client device, which reduces latency and causes applications to respond more quickly to user interactions.
 
 To get started with Cloudflare Workers, see our [Developer documentation](https://developers.cloudflare.com/workers/).
