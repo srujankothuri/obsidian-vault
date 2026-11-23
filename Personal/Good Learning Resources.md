@@ -44,3 +44,6 @@ https://kubernetes.io/docs/home/
 
 Terraform:
 https://developer.hashicorp.com/terraform
+
+Typescript:
+https://www.typescriptlang.org/docs/
