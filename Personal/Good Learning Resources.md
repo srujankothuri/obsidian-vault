@@ -23,4 +23,24 @@ To learn Node.js :
 https://nodejs.org/docs/latest/api/
 https://nodejs.org/learn
 
-To learn 
+To learn package.json,scripts and dependency versions:
+https://docs.npmjs.com/
+
+Cloud Resources:
+AWS:
+https://docs.aws.amazon.com/
+
+Azure:
+https://learn.microsoft.com/en-us/
+
+GCP:
+https://docs.cloud.google.com/docs
+
+Docker:
+https://docs.docker.com/learn/
+
+Kubernetes:
+https://kubernetes.io/docs/home/
+
+Terraform:
+https://developer.hashicorp.com/terraform
