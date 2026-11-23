@@ -15,6 +15,20 @@ A single attacker machine has limited bandwidth. It is also easy to block: you s
 The machines are usually part of a botnet(computers, cameras, routers and other devices infected with malware and controlled remotely by the attacker through a command and control(C2) server.
 
 **A real example: the Mirai botnet and the Dyn attack (2016).** Mirai malware scanned the internet for IoT devices such as cameras, DVRs, and routers that still used factory-default passwords like `admin/admin`. It infected hundreds of thousands of them. In October 2016 the botnet flooded Dyn, a major DNS provider. Because Dyn resolved domain names for services like Twitter, Netflix, Reddit, GitHub, and Spotify, those sites became unreachable for large parts of the US. None of those companies was attacked directly; their DNS dependency was the weak point.
+
+Problems with these attacks :
+
+1. **Direct financial loss.** For e-commerce, every minute of downtime is lost sales. An attack during Black Friday can cost a retailer millions.
+
+2. **Dependent services fail.** As Dyn showed, attacking one shared dependency like DNS, a CDN, or an auth provider takes down everything that relies on it.
+
+3. **Reputation and trust.** Users who can't reach their bank or game server lose confidence, even though no data was stolen.
+
+4. **A smokescreen for other attacks.** Attackers sometimes launch a DDoS to keep the security team busy while they quietly exfiltrate data or attempt intrusions elsewhere.
+
+5. **Extortion.** "Ransom DDoS" groups send a short demonstration attack followed by an email: pay in Bitcoin or face a full attack.
+
+6. **Critical infrastructure.** Hospitals, emergency services, and government portals are also targets, where downtime can have real-world safety consequences.
    
    
 
