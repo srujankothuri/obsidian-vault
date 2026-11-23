@@ -4,7 +4,7 @@ Every system has limited resources like : [[network bandwidth]], CPU , memory, [
 
 **A technical example: the SYN flood.** TCP uses a three-way handshake. The client sends SYN, the server replies SYN-ACK, and the client sends ACK. When the server receives a SYN, it allocates an entry in its _half-open connection queue_ and waits for the final ACK. An attacker sends thousands of SYN packets per second, often with spoofed source IPs, and never sends the ACK. The queue fills with half-open connections, and new legitimate SYNs are dropped. The server is still running, but nobody can connect.
 
-[[Distributed Denial of Service (DDoS)]]
+[[Distributed Denial of Service (DDoS) |DDoS]]
 A DDos attack is the same idea , except the traffic comes from not one machine, but many machines at once, typically thousands to millions of them. 
 
 A single attacker machine has limited bandwidth. It is also easy to block: you see one IP sending garbage and you firewall it. DDoS solves both problems for the attacker.
