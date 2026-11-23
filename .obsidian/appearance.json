@@ -1,7 +1,7 @@
 {
   "showRibbon": true,
-  "theme": "moonstone",
-  "accentColor": "#5ce3f5",
+  "theme": "obsidian",
+  "accentColor": "#f55c64",
   "cssTheme": "Solarized",
   "enabledCssSnippets": [
     "center-mermaid"
