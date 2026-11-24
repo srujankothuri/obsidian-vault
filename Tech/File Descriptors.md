@@ -80,9 +80,23 @@ This is why file descriptors are so central in Unix and Linux. The same small se
 | Terminal               | already fds 0, 1, 2          |
 | Device                 | `open("/dev/random", ...)`   |
 
+##
 Now, lets see how the shell does redirection:
 
 When you type : ls > out.txt
 
 The shell roughly does this:
-pid_ 
+pid_t pid = fork();
+if (pid == 0) {
+int fd = open("out.txt", O WRONLY | O_CREAT | O TRUNC, 0644)
+dup2(fd, 1);  // make fd 1 point wjere fd points 
+close(fd);
+execlp("ls", "ls", NULL);
+
+}
+
+`dup2(fd, 1)` makes entry 1 in the table point to `out.txt`'s open-file entry. Then `ls` runs. `ls` has no idea about redirection. It just writes to fd 1 like it always does, and the output lands in the file.
+
+This works because descriptors **survive `exec()`**. The process gets a new program, but keeps its descriptor table. So the shell sets up the plumbing, and the program uses it without knowing.
+
+Similarly, `2>` redirects fd 2, which is why `ls missing 2> err.txt` sends only the error messages to the file.
