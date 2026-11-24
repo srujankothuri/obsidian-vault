@@ -15,7 +15,6 @@ When you open a file, the OS does the real work of finding it , checking permiss
 
 Example Code:
 ```c
-```
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdio.h>
@@ -31,6 +30,8 @@ int main(void) {
 
     close(fd);                              // give the ticket back
 }
+```
+
 
 Why 3?
 because 0,1,2 were aldready taken
@@ -132,7 +133,17 @@ wait(NULL); wait(NULL);
 
 ls writes to what it think is stdout, wc reads from what it thinks is stdin, and the pipe connects them.
 
-Note all the close calls. A process reading from a pipe gets EOF only when every write end descriptor is closed. if the parent forgot to close fds[1], wc would wait forever, because a writer still exists. This is one of the most common bugs in shell assignments.
+Note all the **close** calls. A process reading from a pipe gets EOF only when every write end descriptor is closed. if the parent forgot to close fds[1], wc would wait forever, because a writer still exists. This is one of the most common bugs in shell assignments.
 
 
+#### Why file descriptors matter so much?
+**One interface for all I/O.** Files, pipes, sockets, terminals, and devices all use `read`, `write`, `close`. Programs can be written once and connected to anything.
+
+**Protection and abstraction.** The process holds only a number. It can't touch kernel structures directly, so it can't forge access to a file it never opened or wasn't permitted to open. Permission checks happen once at `open()`, and the descriptor represents the granted access afterward.
+
+**Composition.** Redirection and pipes rely entirely on descriptors being inherited across `fork()` and kept across `exec()`, plus `dup2()` for rewiring. That's the foundation of the shell.
+
+**Servers and networking.** A web server handling 10,000 connections holds 10,000 socket descriptors. Tools like `select`, `poll`, and `epoll` let one thread wait on many descriptors at once and react to whichever is ready.
+
+**They're a limited resource.** Each process has a cap (often 1024 by default; check with `ulimit -n`). If a program opens files in a loop and never closes them, it eventually fails with `EMFILE: Too many open files`. This is a **file descriptor leak**, similar to a memory leak, and it's a common cause of long-running servers failing.
 
