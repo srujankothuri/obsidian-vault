@@ -14,7 +14,8 @@ A **file descriptor** is a small non-negative integer (0, 1, 2, 3, ...) that a p
 When you open a file, the OS does the real work of finding it , checking permissions and setting up its bookkeeping, and then hands back to you just the number. From then on, you use that number for every operation: read from 3, write to 3, close 3
 
 Example Code:
-
+```c
+```
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdio.h>
@@ -80,12 +81,13 @@ This is why file descriptors are so central in Unix and Linux. The same small se
 | Terminal               | already fds 0, 1, 2          |
 | Device                 | `open("/dev/random", ...)`   |
 
-##
-Now, lets see how the shell does redirection:
+##### Now, lets see how the shell does redirection:
+
 
 When you type : ls > out.txt
 
 The shell roughly does this:
+```c
 pid_t pid = fork();
 if (pid == 0) {
 int fd = open("out.txt", O WRONLY | O_CREAT | O TRUNC, 0644)
@@ -94,9 +96,43 @@ close(fd);
 execlp("ls", "ls", NULL);
 
 }
+```
+
 
 `dup2(fd, 1)` makes entry 1 in the table point to `out.txt`'s open-file entry. Then `ls` runs. `ls` has no idea about redirection. It just writes to fd 1 like it always does, and the output lands in the file.
 
 This works because descriptors **survive `exec()`**. The process gets a new program, but keeps its descriptor table. So the shell sets up the plumbing, and the program uses it without knowing.
 
 Similarly, `2>` redirects fd 2, which is why `ls missing 2> err.txt` sends only the error messages to the file.
+
+#### Now lets see how the shell does pipes
+
+if we type ls | wc -l , lets see what is going to happen:
+
+A pipe is a kernel buffer with two descriptors: one for writing and one for reading.
+
+```c
+
+int fds[2];
+pipe(fds);              // fds[0] = read end, fds[1] = write end
+
+if (fork() == 0) {      // child 1: ls
+    dup2(fds[1], 1);    // stdout → pipe write end
+    close(fds[0]); close(fds[1]);
+    execlp("ls", "ls", NULL);
+}
+if (fork() == 0) {      // child 2: wc
+    dup2(fds[0], 0);    // stdin ← pipe read end
+    close(fds[0]); close(fds[1]);
+    execlp("wc", "wc", "-l", NULL);
+}
+close(fds[0]); close(fds[1]);   // parent closes both
+wait(NULL); wait(NULL);
+```
+
+ls writes to what it think is stdout, wc reads from what it thinks is stdin, and the pipe connects them.
+
+Note all the close calls. A process reading from a pipe gets EOF only when every write end descriptor is closed. if the parent forgot to close fds[1], wc would wait forever, because a writer still exists. This is one of the most common bugs in shell assignments.
+
+
+
