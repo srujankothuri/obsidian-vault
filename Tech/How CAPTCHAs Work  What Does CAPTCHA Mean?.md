@@ -18,7 +18,7 @@ Although CAPTCHAs are designed to block automated bots, CAPTCHAs are themselves 
 
 Classic CAPTCHAs, which are still in use on some web properties today, involve asking users to identify letters. The letters are distorted so that bots are not likely to be able to identify them. To pass the test, users have to interpret the distorted text, type the correct letters into a form field, and submit the form. If the letters don't match, users are prompted to try again. Such tests are common in login forms, account signup forms, online polls, and e-commerce checkout pages.
 
-![captcha example](https://images.ctfassets.net/slt3lc6tev37/3pwMuJ55jpErAafgrWbyTr/e6c487ac6e4288dfe284db72b88ea3d1/captcha.png)
+![[captcha.png|captcha example]]
 
 captcha example
 
@@ -34,7 +34,7 @@ reCAPTCHA is a free service Google offers as a replacement for traditional CAPTC
 
 reCAPTCHA is more advanced than the typical CAPTCHA tests. Like CAPTCHA, some reCAPTCHAs require users to enter images of text that computers have trouble deciphering. Unlike regular CAPTCHAs, reCAPTCHA sources the text from real-world images: pictures of street addresses, text from printed books, text from old newspapers, and so on.
 
-![recaptcha example](https://images.ctfassets.net/slt3lc6tev37/4wCmCWsWiTB8ZG64tBVEKY/0499192ff9baf249fa2b45843c5d2948/recaptcha.png)
+![[recaptcha.png|recaptcha example]]
 
 recaptcha example
 
@@ -48,7 +48,7 @@ Over time, Google has expanded the functionality of reCAPTCHA tests so that they
 
 For an image recognition reCAPTCHA test, typically users are presented with 9 or 16 square images. The images may all be from the same large image, or they may each be different. A user has to identify the images that contain certain objects, such as animals, trees, or street signs. If their response matches the responses from most other users who have submitted the same test, the answer is considered "correct" and the user passes the test.
 
-![image recaptcha](https://images.ctfassets.net/slt3lc6tev37/3mWhV5AJh3QeW7ZCsEHm9N/1104811b27166f82bce8157a5b974183/image-captcha.png)
+![[image-captcha.png|image recaptcha]]
 
 image recaptcha
 
@@ -58,7 +58,7 @@ Picking out certain objects from blurry photos is a hard problem for computers t
 
 Some reCAPTCHA tests simply prompt the user to check a box next to the statement, "I'm not a robot." However, the test is not the actual action of clicking the checkbox – it's everything leading up to the checkbox click.
 
-![Not a Robot captcha](https://images.ctfassets.net/slt3lc6tev37/79wsjD0Xy7FmmYvR0sCncy/5b732b7e26adb7d6c06d943d14dc4acd/not-a-robot.png)
+![[not-a-robot.png|Not a Robot captcha]]
 
 Not a Robot captcha
 
